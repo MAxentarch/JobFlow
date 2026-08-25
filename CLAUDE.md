@@ -68,6 +68,17 @@ The web service's `DATABASE_URL` is set to `${{Postgres.DATABASE_URL}}` (a Railw
 
 The public domain must target whatever port the app actually listens on at runtime (visible in `railway logs --service web` as `- Local: http://localhost:<port>`) — Railway assigns this dynamically per deployment via its own `PORT` variable, which `next start` respects automatically. It is **not** reliably 3000; check the logs rather than assuming.
 
+## Environments
+
+There are two Railway environments in this project, each with its own separate Postgres database and web service (no data is shared between them):
+
+- **`production`** (Railway's default name for the first environment created — a naming quirk, not a description) — the day-to-day/testing environment. Deploys here happen manually via `railway up --service web`. Live URL: https://web-production-b6940.up.railway.app
+- **`prod`** — the real production environment, kept deliberately separate so testing never touches real data. **Auto-deploys** whenever the `prod` git branch is pushed to GitHub (via Railway's built-in GitHub integration, connected with `railway service source connect`— no GitHub Actions workflow or token involved). Live URL: https://web-prod-f26c.up.railway.app
+
+To work with a specific environment via CLI, add `--environment production` or `--environment prod` to most `railway` commands (e.g. `railway logs --service web --environment prod`).
+
+We looked into a token-based GitHub Actions workflow first, but Railway's API refuses to mint new tokens (of any kind) from a CLI-authenticated session — "Not Authorized" — seemingly a deliberate security policy. A project-scoped deploy token can still be created manually from the Railway dashboard (Project → Settings → Tokens) if a real GitHub Actions workflow is wanted later instead of Railway's own integration.
+
 ## House rules
 
 - Keep this project simple and beginner-friendly. Prefer small, readable changes over clever code.
