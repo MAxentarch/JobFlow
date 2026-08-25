@@ -1,8 +1,8 @@
 import { PrismaClient } from "../src/generated/prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-const adapter = new PrismaBetterSqlite3({
-  url: process.env.DATABASE_URL ?? "file:./dev.db",
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
 });
 const prisma = new PrismaClient({ adapter });
 
@@ -11,9 +11,9 @@ async function main() {
 
   await prisma.task.createMany({
     data: [
-      { title: "Plan the TaskFlow project", completed: true },
-      { title: "Design the homepage layout", completed: true },
-      { title: "Connect the database", completed: false },
+      { title: "Plan the TaskFlow project", completed: true, status: "completed" },
+      { title: "Design the homepage layout", completed: true, status: "completed" },
+      { title: "Connect the database", completed: false, status: "active" },
     ],
   });
 
