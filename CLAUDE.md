@@ -46,7 +46,7 @@ If something about Prisma or Next.js behaves differently than expected, check `n
 
 ## Hosting
 
-The database is a Postgres instance on Railway (project "TaskFlow"), not a local file — this app originally used local SQLite (see git history) but was migrated over. The app itself is also deployed on Railway, as a second service called "web" in the same project. Live URL: https://web-production-b6940.up.railway.app
+The database is a Postgres instance on Railway (project "JobFlow"), not a local file — this app originally used local SQLite (see git history) but was migrated over. The app itself is also deployed on Railway, as a second service called "web" in the same project. Live URL: https://web-production-b6940.up.railway.app
 
 Useful commands:
 
