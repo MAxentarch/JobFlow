@@ -11,7 +11,7 @@ async function main() {
 
   await prisma.task.createMany({
     data: [
-      { title: "Plan the TaskFlow project", completed: true, status: "completed" },
+      { title: "Plan the JobFlow project", completed: true, status: "completed" },
       { title: "Design the homepage layout", completed: true, status: "completed" },
       { title: "Connect the database", completed: false, status: "active" },
     ],

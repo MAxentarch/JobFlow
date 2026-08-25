@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TaskFlow",
+  title: "JobFlow",
   description: "A simple task tracker built with Next.js.",
 };
 
